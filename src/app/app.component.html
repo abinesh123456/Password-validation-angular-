@@ -1,0 +1,38 @@
+<!-- main app container -->
+<div class="card m-3">
+    <h5 class="card-header">Angular 8 Template-Driven Form Validation</h5>
+    <div class="card-body">
+        <form name="form" (ngSubmit)="onSubmit()" #f="ngForm"  novalidate>           
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Mobile No</label>
+                    <input type="mobileno" name="mobileno" class="form-control" [(ngModel)]="model.mobileno" #mobileno="ngModel" [ngClass]="{ 'is-invalid': f.submitted && mobileno.invalid && ofctelephone.invalid && hometelephone.invalid }" required >
+                    <div *ngIf="f.submitted && mobileno.invalid && hometelephone.invalid && ofctelephone.invalid" class="invalid-feedback">
+                        <div *ngIf="mobileno.errors.required && hometelephone.invalid && ofctelephone.invalid">MobileNo is required</div> 
+                    </div>
+                </div>
+                <div class="form-group col">
+                    <label>Home Telephone No</label>
+                    <input type="hometelephone" name="hometelephone" class="form-control" [(ngModel)]="model.hometelephone" #hometelephone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && hometelephone.invalid && mobileno.invalid && ofctelephone.invalid}" required>
+                    <div *ngIf="f.submitted && hometelephone.invalid && mobileno.invalid && ofctelephone.invalid" class="invalid-feedback">
+                        <div *ngIf="hometelephone.errors.required && mobileno.invalid && ofctelephone.invalid">Home Telephone No is required</div>
+                    </div>
+                </div>                
+            </div>  
+            <div class="form-group">
+               <div class="form-group col">
+                    <label>Office Telephone No</label>
+                    <input type="ofctelephone" name="ofctelephone" class="form-control" [(ngModel)]="model.ofctelephone" #ofctelephone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && ofctelephone.invalid && hometelephone.invalid && mobileno.invalid }" required>
+                    <div *ngIf="f.submitted && ofctelephone.invalid && hometelephone.invalid && mobileno.invalid" class="invalid-feedback">
+                        <div *ngIf="hometelephone.errors.required && hometelephone.invalid && mobileno.invalid">Office Telephone No is required</div>
+                    </div>
+               </div>
+            </div>         
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
